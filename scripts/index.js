@@ -9,7 +9,8 @@ const _pixiApp = new PIXI.Application({
     height: 768, // передаем параметр высоты
 }); 
 console.log(_pixiApp);
- 
+
+const game = new Game(_pixiApp);
+_pixiApp.ticker.add(game.update, game);
 document.body.appendChild(_pixiApp.view); 
 
-new Game(_pixiApp);
