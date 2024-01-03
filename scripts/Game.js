@@ -4,8 +4,8 @@ import Platform from "./Entities/Platform.js";
 export default class Game{
 
     #pixiApp;
-    #hero;
-    #platform;
+    #hero;              // герой
+    #platforms = [];    // массив с платформами
 
     constructor(pixiApp){
         this.#pixiApp = pixiApp;
@@ -15,16 +15,35 @@ export default class Game{
         this.#hero.y = 200;               /** задаем начальное местоположение героя */
         this.#pixiApp.stage.addChild(this.#hero);
 
-        this.#platform = new Platform(); // рисуем платформу
-        this.#platform.x = 100;
-        this.#platform.y = 500;               /** задаем начальное местоположение героя */
-        this.#pixiApp.stage.addChild(this.#platform);
+        const platform1 = new Platform(); // рисуем платформу 1
+        platform1.x = 100;
+        platform1.y = 400;               
+        this.#pixiApp.stage.addChild(platform1);
+
+        const platform2 = new Platform(); // рисуем платформу 1
+        platform2.x = 300;
+        platform2.y = 500;               
+        this.#pixiApp.stage.addChild(platform2);
+
+        this.#platforms.push(platform1);   // записываем в массив платформу 1
+        this.#platforms.push(platform2);   // записываем в массив платформу 2
     }
 
     update(){
+
+        const prevPoint = { // сохраняем текущие положения 
+            x:this.#hero.x, // по x
+            y:this.#hero.y  // по y
+        };
+
         this.#hero.update(); // обновление игры 
 
-        this.isCheckAABB(this.#hero, this.#platform); // проверяем на столкновения героя и платформу
+        for (let i=0; i<this.#platforms.length; i++){               // проходим циклом по каждой платформе и проверяем на столкновения 
+            if (this.isCheckAABB(this.#hero, this.#platforms[i])){ // если герой встречается с платформой
+                this.#hero.y = prevPoint.y;                              // то возвращается предыдущее значение
+            } 
+        }
+        
     }
 
 

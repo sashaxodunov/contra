@@ -15,6 +15,7 @@ export default class Hero extends Container{
     }
 
     update(){
-        this.y += this.#GRAVITY_FORCE; // В каждом кадре добавляет переменную #GRAVITY_FORCE
+        this.x += this.#GRAVITY_FORCE; // В каждом кадре добавляет переменную #GRAVITY_FORCE движение по горизонтали 
+        this.y += this.#GRAVITY_FORCE; // В каждом кадре добавляет переменную #GRAVITY_FORCE движение по вертикали
     }
 }
