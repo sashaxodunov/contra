@@ -45,9 +45,18 @@ export default class Game{
         this.#hero.update(); // обновление игры 
 
         for (let i=0; i<this.#platforms.length; i++){               // проходим циклом по каждой платформе и проверяем на столкновения 
-            if (this.isCheckAABB(this.#hero, this.#platforms[i])){ // если герой встречается с платформой
-                this.#hero.y = prevPoint.y;                              // то возвращается предыдущее значение
+            if (!this.isCheckAABB(this.#hero, this.#platforms[i])){ // Проверяем на предмет любого столкновения если его не было проверяем                                                  следующую платформу
+                continue;                                           // если столкновение имело место идем к следующей проверке
             } 
+
+            const currY = this.#hero.y; // сохраняем текущее значение по y
+            this.#hero.y = prevPoint.y; // возвращаем герою предыдущее значение по y до обновления
+            if (!this.isCheckAABB(this.#hero, this.#platforms[i])){ // снова проверяем на коллизию если она не прошла то столкновение по y
+                continue;                                             
+            } // если эта коллизия не сработала то столкновение было по стороне x
+
+            this.#hero.y = currY; // возвращаем как было 
+            this.#hero.x = prevPoint.x; // по х возвращаем значение до обновления
         }
         
     }
