@@ -12,7 +12,7 @@ export default class Game{
 
         this.#hero = new Hero();  // рисуем героя
         this.#hero.x = 100;
-        this.#hero.y = 250;               /** задаем начальное местоположение героя */
+        this.#hero.y = 100;               /** задаем начальное местоположение героя */
         this.#pixiApp.stage.addChild(this.#hero);
 
         const platform1 = new Platform(); // рисуем платформу 1
@@ -52,6 +52,7 @@ export default class Game{
             const currY = this.#hero.y; // сохраняем текущее значение по y
             this.#hero.y = prevPoint.y; // возвращаем герою предыдущее значение по y до обновления
             if (!this.isCheckAABB(this.#hero, this.#platforms[i])){ // снова проверяем на коллизию если она не прошла то столкновение по y
+                this.#hero.stay(); // сбрасываем скорость до 0
                 continue;                                             
             } // если эта коллизия не сработала то столкновение было по стороне x
 
