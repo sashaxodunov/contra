@@ -7,7 +7,7 @@ export default class Platform extends Container{
 
         const view = new Graphics();
         view.lineStyle(1, 0x00ff00);
-        view.drawRect(0,0,300,30);
+        view.drawRect(0,0,200,30);
         
         this.addChild(view);
     }

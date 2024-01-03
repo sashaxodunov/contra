@@ -11,22 +11,28 @@ export default class Game{
         this.#pixiApp = pixiApp;
 
         this.#hero = new Hero();  // рисуем героя
-        this.#hero.x = 200;
-        this.#hero.y = 200;               /** задаем начальное местоположение героя */
+        this.#hero.x = 100;
+        this.#hero.y = 250;               /** задаем начальное местоположение героя */
         this.#pixiApp.stage.addChild(this.#hero);
 
         const platform1 = new Platform(); // рисуем платформу 1
-        platform1.x = 100;
+        platform1.x = 50;
         platform1.y = 400;               
         this.#pixiApp.stage.addChild(platform1);
 
-        const platform2 = new Platform(); // рисуем платформу 1
-        platform2.x = 300;
-        platform2.y = 500;               
+        const platform2 = new Platform(); // рисуем платформу 2
+        platform2.x = 200;
+        platform2.y = 450;               
         this.#pixiApp.stage.addChild(platform2);
+
+        const platform3 = new Platform(); // рисуем платформу 3
+        platform3.x = 400;
+        platform3.y = 400;               
+        this.#pixiApp.stage.addChild(platform3);
 
         this.#platforms.push(platform1);   // записываем в массив платформу 1
         this.#platforms.push(platform2);   // записываем в массив платформу 2
+        this.#platforms.push(platform3);   // записываем в массив платформу 3
     }
 
     update(){
